@@ -14,8 +14,13 @@ export default function TaskApp() {
         setText("");
     };
 
-    const handleDelete = (id) => {};
-    const handleClearAll = () => {};
+    const handleDelete = (id) => {
+        setTasks((prev) => prev.filter((t) => t.id !== id));
+    };
+
+    const handleClearAll = () => {
+        setTasks([]);
+    };
 
     return (
         <section className="card">
@@ -35,7 +40,7 @@ export default function TaskApp() {
                 </button>
             </div>
 
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} onDelete={handleDelete} />
 
             <div className="footerRow">
                 <button className="btn btn--ghost" onClick={handleClearAll}>
