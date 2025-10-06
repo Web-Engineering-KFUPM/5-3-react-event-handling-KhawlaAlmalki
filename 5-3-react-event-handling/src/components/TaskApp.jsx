@@ -39,6 +39,7 @@ export default function TaskApp() {
                     Submit
                 </button>
             </div>
+            <p>{text}</p>
 
             <TaskList tasks={tasks} onDelete={handleDelete} />
 
