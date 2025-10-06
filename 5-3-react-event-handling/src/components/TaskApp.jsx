@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import TaskList from "./TaskList";
 
 export default function TaskApp() {
-    // Task 1: controlled input
     const [text, setText] = useState("");
+    const [tasks, setTasks] = useState([]);
 
     const handleSubmit = () => {
+        const value = text.trim();
+        if (!value) return;
 
+        const newTask = { id: Date.now(), text: value };
+        setTasks((prev) => [...prev, newTask]);
+        setText("");
     };
 
-    const handleDelete = (id) => {
-        // TODO: filter tasks by id to remove the clicked one
-    };
+    const handleDelete = (id) => {};
+    const handleClearAll = () => {};
 
-    const handleClearAll = () => {
-        // TODO: set tasks to empty array
-    };
     return (
         <section className="card">
-            {/* Controlled Input */}
             <div className="inputRow">
                 <input
                     type="text"
@@ -35,12 +35,8 @@ export default function TaskApp() {
                 </button>
             </div>
 
-            <p>{text}</p>
+            <TaskList tasks={tasks} />
 
-            {/* Render Task List and Enable Delete */}
-            <TaskList /* tasks={tasks} onDelete={handleDelete} */ />
-
-            {/* Clear All */}
             <div className="footerRow">
                 <button className="btn btn--ghost" onClick={handleClearAll}>
                     Clear All
